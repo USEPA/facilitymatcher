@@ -1,15 +1,15 @@
 import facilitymatcher
 
-inventories_to_get = {"TRI":"2014","eGRID":"2014"}
+facilitymatches = facilitymatcher.get_matches_for_inventories(["TRI"])
 
-inventory_to_FRS_pgm_acronymn = {"TRI":"TRIS","eGRID":"EGRID"}
-program_list = []
-for k in inventories_to_get.keys():
-    pgm_acronym = inventory_to_FRS_pgm_acronymn[k]
-    program_list.append(pgm_acronym)
+#Get matches only for list of facilities in one inventory
+from_inventory = "eGRID"
+to_inventories = ["TRI","NEI"]
+facilitymatchesforoneinventory = facilitymatcher.get_table_of_matches_from_program_to_programs_of_interest(from_inventory,to_inventories)
+#Peek at it
+facilitymatchesforoneinventory.head()
 
-facilitymatches = facilitymatcher.get_matches_for_StEWI(program_list)
-
-
+#Count the matches
+facilitymatcher.count_matches_from_inventory_to_inventories_of_interest(from_inventory,to_inventories)
 
 
