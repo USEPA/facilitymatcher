@@ -4,8 +4,8 @@
 
 import requests
 import json
-#base url
 
+#base url
 base = 'http://ofmpub.epa.gov/enviro/frs_rest_services'
 facilityquery = base + '.get_facilities?'
 pgm_sys_id = 'pgm_sys_id='
@@ -18,13 +18,19 @@ output='output=JSON'
 id='2'
 program_acronym='EGRID'
 
-def getFRSIDforProgramNameandIDfromAPI(program_acronym,id):
+def callFRSforProgramAcronymandIDfromAPI(program_acronym,id):
       url = facilityquery + pgm_sys_acrnm + program_acronym + '&'  + pgm_sys_id + id  + '&'  + output
       facilityresponse = requests.get(url)
-      facilityjson = json.loads(facilitylistresponse.text)['Results']
+      facilityjson = json.loads(facilityresponse.text)['Results']
       facilityinfo = facilityjson['FRSFacility']
+      return facilityinfo
+
+
+def getFRSIDfromAPIfaciltyinfo(facilityinfo):
       FRSID = facilityinfo[0]['RegistryId']
       return FRSID
 
 #test
-print(getFRSIDforProgramNameandIDfromAPI(program_acronym,id))
+faciltyinfofromAPIresponse = callFRSforProgramAcronymandIDfromAPI(program_acronym,id)
+print(faciltyinfofromAPIresponse)
+print(getFRSIDfromAPIfaciltyinfo(faciltyinfofromAPIresponse))
