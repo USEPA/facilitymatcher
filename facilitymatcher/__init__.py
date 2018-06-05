@@ -51,3 +51,10 @@ def count_matches_from_inventory_to_inventories_of_interest(from_inventory_acron
     matches_flat.columns = ['From_Inventory','To_Inventory','Count_of_Facility_Matches']
     return matches_flat
 
+#Returns the FRS_NAICS csv file filters for IDs of interest. Optionally it will also filter by programs of interest
+def getFRSNAICSInfoforFacilityList(frs_id_list,programs_of_interest_list=None):
+    all_NAICS = pd.read_csv(output_dir+'FRS_NAICS.csv',header=0,dtype={"REGISTRY_ID":"str","NAICS":"str"})
+    NAICS_of_interest = all_NAICS[all_NAICS["REGISTRY_ID"].isin(frs_id_list)]
+    if(programs_of_interest_list) is not None:
+        NAICS_of_interest = NAICS_of_interest[NAICS_of_interest['PGM_SYS_ACRNM'].isin(programs_of_interest_list)]
+    return NAICS_of_interest
