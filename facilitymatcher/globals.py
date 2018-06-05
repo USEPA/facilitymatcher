@@ -4,7 +4,7 @@ import requests
 
 inventory_to_FRS_pgm_acronymn = {"NEI":"EIS","TRI":"TRIS","eGRID":"EGRID","GHGRP":"E-GGRT","RCRAInfo":"RCRAINFO","DMR":"NPDES"}
 
-def download_extract_FRS_single_national(FRSpath):
+def download_extract_FRS_combined_national(FRSpath):
     url = 'https://www3.epa.gov/enviro/html/fii/downloads/state_files/national_combined.zip'
     request = requests.get(url).content
     zip_file = zipfile.ZipFile(io.BytesIO(request))
