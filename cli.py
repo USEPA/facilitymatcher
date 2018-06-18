@@ -9,9 +9,8 @@ import click
 @click.option('--output', default="./output.csv", help="Output file path")
 def cli(verbose, no_log, skip_rows, skip_chunks, output):
     """
-    A tool that compares two CSV files and finds matches based on input fields.
 
-    Use config.json for FRS filepath, EIA filepath, the fields to match,
+    Use config.json for input datasets,  the fields to match,
     threshold to be set, chunk_size
 
     chunksize refers to how much of the FRS file is read per iteration. If you have a large RAM, you can increase
