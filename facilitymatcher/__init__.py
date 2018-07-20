@@ -36,8 +36,13 @@ def get_matches_from_inventory_to_inventories_of_interest(from_inventory_acronym
     from_program_bridge = filter_bridges_by_inventory_list(facilitymatches,from_inventory_acronym_list)
     to_program_bridge = filter_bridges_by_inventory_list(facilitymatches,list_of_to_inventory_acronyms)
     matches = pd.merge(from_program_bridge,to_program_bridge,on='REGISTRY_ID')
+    #Remove cases when 'PGM_SYS_ACRNM_x' and 'PGM_SYS_ACRNM_y' are the same, but IDs are different
+    matches = matches[((matches['PGM_SYS_ACRNM_x']==matches['PGM_SYS_ACRNM_y'])&
+                              (matches['PGM_SYS_ID_x']==matches['PGM_SYS_ID_y']))|
+                              (matches['PGM_SYS_ACRNM_x']!=matches['PGM_SYS_ACRNM_y'])]
     return matches
 
+#This function is not doing anything unique
 def get_table_of_matches_from_inventory_to_inventories_of_interest(from_inventory_acronym,list_of_to_inventory_acronyms):
     matches = get_matches_from_inventory_to_inventories_of_interest(from_inventory_acronym, list_of_to_inventory_acronyms)
     table_of_matches = matches[['REGISTRY_ID','PGM_SYS_ACRNM_x','PGM_SYS_ID_x','PGM_SYS_ACRNM_y','PGM_SYS_ID_y']]
