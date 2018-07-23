@@ -1,0 +1,7 @@
+{
+  "DATA_FILEPATH": "data/StewiComboInput.xlsx",
+  "LOOKUP_FIELDS": ["FRS_ID", "Compartment", "SRS_ID"],
+  "OUTPUT_FILEPATH": "output.csv",
+  "KEEP_REPEATED_DUPLICATES": true,
+  "INCLUDE_ORIGINAL": true
+}
