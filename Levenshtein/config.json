@@ -1,0 +1,15 @@
+{
+  "FRS_FIELDS": ["PRIMARY_NAME", "LOCATION_ADDRESS"],
+  "EIA_FIELDS": ["Plant Name", "Street Address"],
+  "EXTRA_EIA_FIELDS": ["Plant Code"],
+  "INDICES_FIELD": "REGISTRY_ID",
+  "SCORE_FIELD_NAME": "Matching Score",
+  "APPEND_EIA_TO_OUT": true,
+  "APPEND_SCORE_TO_OUT": true,
+  "OUTPUT_FIELDS": ["PRIMARY_NAME", "LOCATION_ADDRESS", "Plant Name", "Street Address"],
+  "FRS_FILEPATH": "data/FRS_Facility.csv",
+  "EIA_FILEPATH": "data/EIAinventoryfacilitytable.csv",
+  "CHUNK_SIZE": 1000,
+  "FUZZ_THRESHOLD": 85,
+  "OVERWRITE_OUTPUT_FILE": true
+}
